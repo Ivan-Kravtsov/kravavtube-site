@@ -22,7 +22,8 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }, { threshold: 0.1 });
 
-    const animatedElements = document.querySelectorAll('.card, .tech-item, .faq-item, .screenshot-container');
+    // Добавили .gallery-item для анимации появления скриншотов
+    const animatedElements = document.querySelectorAll('.card, .tech-item, .faq-item, .gallery-item');
     animatedElements.forEach(el => {
         el.style.opacity = 0;
         el.style.transform = "translateY(30px)";
