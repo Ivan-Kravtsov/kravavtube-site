@@ -75,23 +75,21 @@
         </div>
     </section>
 
-    <!-- Скриншоты (Визуализация) -->
+    <!-- Скриншоты (Карусель) -->
     <section id="screenshots" class="screenshots">
         <h2>ИНТЕРФЕЙС</h2>
         <p class="section-desc">Стильный дизайн, который приятно использовать</p>
-        <div class="gallery">
-            <div class="gallery-item glass">
-                <img src="s1.jpg" alt="Скриншот лаунчера 1" loading="lazy">
+        
+        <div class="slider-container">
+            <button class="slider-btn prev" id="prevBtn">&#10094;</button>
+            <div class="slider-track" id="sliderTrack">
+                <div class="slide"><img src="s1.jpg" alt="Скриншот 1"></div>
+                <div class="slide"><img src="s2.jpg" alt="Скриншот 2"></div>
+                <div class="slide"><img src="s3.jpg" alt="Скриншот 3"></div>
+                <div class="slide"><img src="s4.jpg" alt="Скриншот 4"></div>
             </div>
-            <div class="gallery-item glass">
-                <img src="s2.jpg" alt="Скриншот лаунчера 2" loading="lazy">
-            </div>
-            <div class="gallery-item glass">
-                <img src="s3.jpg" alt="Скриншот мобильного пульта 1" loading="lazy">
-            </div>
-            <div class="gallery-item glass">
-                <img src="s4.jpg" alt="Скриншот мобильного пульта 2" loading="lazy">
-            </div>
+            <button class="slider-btn next" id="nextBtn">&#10095;</button>
+            <div class="slider-dots" id="dotsContainer"></div>
         </div>
     </section>
 

@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // Анимация появления карточек при скролле
+    // Анимация появления элементов при скролле
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -22,8 +22,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }, { threshold: 0.1 });
 
-    // Добавили .gallery-item для анимации появления скриншотов
-    const animatedElements = document.querySelectorAll('.card, .tech-item, .faq-item, .gallery-item');
+    const animatedElements = document.querySelectorAll('.card, .tech-item, .faq-item, .slider-container');
     animatedElements.forEach(el => {
         el.style.opacity = 0;
         el.style.transform = "translateY(30px)";
@@ -35,14 +34,54 @@ document.addEventListener("DOMContentLoaded", () => {
     const faqItems = document.querySelectorAll('.faq-item');
     faqItems.forEach(item => {
         const p = item.querySelector('p');
-        p.style.display = 'block'; // Показываем ответы по умолчанию
-        
+        p.style.display = 'block'; 
         item.addEventListener('click', () => {
-            if (p.style.display === 'none') {
-                p.style.display = 'block';
-            } else {
-                p.style.display = 'none';
-            }
+            p.style.display = p.style.display === 'none' ? 'block' : 'none';
         });
     });
+
+    // --- КАРУСЕЛЬ ---
+    const track = document.getElementById('sliderTrack');
+    const slides = document.querySelectorAll('.slide');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const dotsContainer = document.getElementById('dotsContainer');
+    
+    let currentIndex = 0;
+    const totalSlides = slides.length;
+
+    for (let i = 0; i < totalSlides; i++) {
+        const dot = document.createElement('span');
+        dot.classList.add('dot');
+        if (i === 0) dot.classList.add('active');
+        dot.addEventListener('click', () => goToSlide(i));
+        dotsContainer.appendChild(dot);
+    }
+
+    const dots = document.querySelectorAll('.dot');
+
+    function updateCarousel() {
+        track.style.transform = `translateX(-${currentIndex * 100}%)`;
+        dots.forEach((dot, index) => {
+            dot.classList.toggle('active', index === currentIndex);
+        });
+    }
+
+    function goToSlide(index) {
+        currentIndex = index;
+        updateCarousel();
+    }
+
+    function nextSlide() {
+        currentIndex = (currentIndex + 1) % totalSlides;
+        updateCarousel();
+    }
+
+    function prevSlide() {
+        currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
+        updateCarousel();
+    }
+
+    nextBtn.addEventListener('click', nextSlide);
+    prevBtn.addEventListener('click', prevSlide);
 });
