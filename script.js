@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-    // Плавный скролл для якорных ссылок
+    // --- ПЛАВНЫЙ СКРОЛЛ ---
     const links = document.querySelectorAll('a[href^="#"]');
     for (const link of links) {
         link.addEventListener("click", function(e) {
@@ -12,32 +12,20 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // Анимация появления элементов при скролле
+    // --- АНИМАЦИЯ ПОЯВЛЕНИЯ ПРИ СКРОЛЛЕ ---
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                entry.target.style.opacity = 1;
-                entry.target.style.transform = "translateY(0)";
+                entry.target.classList.add('visible');
+                observer.unobserve(entry.target);
             }
         });
-    }, { threshold: 0.1 });
+    }, { threshold: 0.15 });
 
-    const animatedElements = document.querySelectorAll('.card, .tech-item, .faq-item, .slider-container');
+    const animatedElements = document.querySelectorAll('.hero-tag, .hero h1, .hero-desc, .hero-actions, .hero-stats, .section-header, .bento-item, .slider-container, .tech-row, .download-card');
     animatedElements.forEach(el => {
-        el.style.opacity = 0;
-        el.style.transform = "translateY(30px)";
-        el.style.transition = "opacity 0.6s ease-out, transform 0.6s ease-out";
+        el.classList.add('reveal');
         observer.observe(el);
-    });
-
-    // Аккордеон для FAQ
-    const faqItems = document.querySelectorAll('.faq-item');
-    faqItems.forEach(item => {
-        const p = item.querySelector('p');
-        p.style.display = 'block'; 
-        item.addEventListener('click', () => {
-            p.style.display = p.style.display === 'none' ? 'block' : 'none';
-        });
     });
 
     // --- КАРУСЕЛЬ ---
