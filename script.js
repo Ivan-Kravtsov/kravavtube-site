@@ -38,6 +38,7 @@ document.addEventListener("DOMContentLoaded", () => {
     let currentIndex = 0;
     const totalSlides = slides.length;
 
+    // Создаем точки
     for (let i = 0; i < totalSlides; i++) {
         const dot = document.createElement('span');
         dot.classList.add('dot');
